@@ -1,0 +1,1 @@
+sshpass -p $PSSH ssh gimpei@$1
