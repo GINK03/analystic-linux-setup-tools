@@ -6,16 +6,17 @@
 def init_bin():
   HOME = os.environ['HOME'] 
   if Path(f'{HOME}/.opts').exists() is False:
-    shutil.copy('.opts', f'{HOME}/')
+    shutil.copytree('opts', f'{HOME}/.opts')
+
     print('Add opts/bin to PATH')
     output = f'export PATH="$HOME/.opts/bin:$PATH"\n'
     Path(f'{HOME}/.bashrc').open('a').write(output) 
-
 print('this is a setup tools for Analyst Linux.')
 import os
 from pathlib import Path
 import argparse as Ap
 import shutil
+init_bin()
 
 p = Ap.ArgumentParser(description='Setup of Analyst Linux.')
 p.add_argument("-p", "--python", type=bool, default=False)
