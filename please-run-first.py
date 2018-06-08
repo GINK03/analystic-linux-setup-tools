@@ -11,20 +11,31 @@ def init_bin():
     print('Add opts/bin to PATH')
     output = f'export PATH="$HOME/.opts/bin:$PATH"\n'
     Path(f'{HOME}/.bashrc').open('a').write(output) 
+
+def install_bins():
+  #print('Please input your linux password.')
+  #PW = input().strip()
+  os.system(f'sudo snap install kotlin')  
+  os.system(f'sudo apt install neovim')
+  os.system(f'sudo apt install openjdk-8-jdk')
+
 print('this is a setup tools for Analyst Linux.')
 import os
 from pathlib import Path
 import argparse as Ap
 import shutil
+
 init_bin()
 
 p = Ap.ArgumentParser(description='Setup of Analyst Linux.')
 p.add_argument("-p", "--python", type=bool, default=False)
 p.add_argument("-s", "--ssh", type=bool, default=False)
-
+p.add_argument("-b", "--bin", type=bool, default=False)
 args = p.parse_args()
 
-print(args.python)
+if args.bin == True:
+  install_bins()
+
 if args.python == True:
   bases = ['pandas', 'numpy', 'tensorflow-gpu', 'keras', 'scikit-learn']
   for base in bases:
